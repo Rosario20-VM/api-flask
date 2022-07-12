@@ -14,7 +14,7 @@ def home():
     ruta= open ("./correos.txt","r")
     spam=ruta.read(4)
     ham=ruta.read(4)
-    response = jsonify(cantidad =[{"spam": str(spam), "ham": str(ham) }])
+    response = jsonify({"correos": {"spam": str(spam), "ham": str(ham) }})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
@@ -24,7 +24,7 @@ def home():
 def prediccion():
     ruta= open ("./prediccion.txt","r")
     prediccion=ruta.read()
-    response= jsonify(prediccion =[{"Prediccion": str(prediccion)}])
+    response= jsonify({"prediccion": str(prediccion)})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
@@ -34,7 +34,7 @@ def prediccion():
 def porcentaje():
     ruta= open ("./porcentaje.txt","r")
     porcentaje=ruta.read()
-    response= jsonify(porcentaje =[{"Porcentaje": str(porcentaje)}])
+    response= jsonify({"Porcentaje": str(porcentaje)})
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
