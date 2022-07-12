@@ -14,7 +14,9 @@ def home():
     ruta= open ("./correos.txt","r")
     spam=ruta.read(4)
     ham=ruta.read(4)
-    return jsonify(cantidad =[{"spam": str(spam), "ham": str(ham) }])
+    response = jsonify(cantidad =[{"spam": str(spam), "ham": str(ham) }])
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @cross_origin
 @app.route('/prediccion', methods=['GET'])
@@ -22,7 +24,9 @@ def home():
 def prediccion():
     ruta= open ("./prediccion.txt","r")
     prediccion=ruta.read()
-    return jsonify(prediccion =[{"Prediccion": str(prediccion)}])
+    response= jsonify(prediccion =[{"Prediccion": str(prediccion)}])
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @cross_origin
 @app.route('/porcentaje', methods=['GET'])
@@ -30,13 +34,17 @@ def prediccion():
 def porcentaje():
     ruta= open ("./porcentaje.txt","r")
     porcentaje=ruta.read()
-    return jsonify(porcentaje =[{"Porcentaje": str(porcentaje)}])
+    response= jsonify(porcentaje =[{"Porcentaje": str(porcentaje)}])
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 @cross_origin
 @app.route('/imagen', methods=['GET'])
 
 def imagen():
-    return send_file('./Correos.jpg', attachment_filename='Correos.jpg')
+    response = send_file('./Correos.jpg', attachment_filename='Correos.jpg')
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 
